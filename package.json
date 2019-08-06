@@ -1,0 +1,46 @@
+{
+    "name": "gatekeeper-express",
+    "version": "1.0.0",
+    "description": "The one and only Two Factor Authentication Handler for Express.",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/claude-abounegm/gatekeeper-express.git"
+    },
+    "keywords": [
+        "express",
+        "session",
+        "passport",
+        "view",
+        "2fa",
+        "two-factor",
+        "authentication",
+        "two-factor-authentication"
+    ],
+    "author": "Claude Abounegm (cabounegm@incomestore.com)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/claude-abounegm/gatekeeper-express/issues"
+    },
+    "homepage": "https://github.com/claude-abounegm/gatekeeper-express#readme",
+    "dependencies": {
+        "qrcode": "^1.4.1",
+        "speakeasy": "^2.0.0"
+    },
+    "peerDependencies": {
+        "lodash": "^4.17.15",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "eslint": "^6.0.0",
+        "eslint-config-prettier": "^5.0.0",
+        "eslint-plugin-prettier": "^3.1.0",
+        "prettier": "^1.18.2"
+    }
+}
