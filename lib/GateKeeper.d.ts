@@ -59,6 +59,7 @@ declare global {
     namespace Express {
         interface Response {
             secret?: Secret;
+            isTwoFactorVerified: () => boolean;
         }
     }
 }

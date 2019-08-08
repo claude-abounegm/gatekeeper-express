@@ -90,4 +90,8 @@ If you request `/2fa` with Ajax it will send back in JSON: `{ qrImage: string; v
 Do a `POST` request to `verifyUrl` and GateKeeper will send back a `JSON` object with a redirect url to use: `{  redirect: string; }` if needed.
 
 ***
+# Reset
+To reset a user's 2-fa, simply delete `user.secret`.
+***
+
 Made with ❤ at [Income Store](http://incomestore.com) in _Lancaster, PA_.
