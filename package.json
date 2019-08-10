@@ -1,6 +1,6 @@
 {
     "name": "gatekeeper-express",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "The one and only Two Factor Authentication Handler for Express.",
     "main": "index.js",
     "directories": {

@@ -32,7 +32,6 @@ const gateKeeper = new GateKeeper({
 });
 
 app.use(
-    ensureLoggedIn(),
     gateKeeper.express({
         routePathPrefix: '/2fa',
         userIdPath: 'email',
