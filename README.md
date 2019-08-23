@@ -33,16 +33,15 @@ const gateKeeper = new GateKeeper({
 
 app.use(
     gateKeeper.express({
-        routePathPrefix: '/2fa',
+        routePathPrefix: '/tfa',
         userIdPath: 'email',
-        onSecret: (req, secret, next) => {
-            // update database here
-            req.user.secret = secret;
+        onSecret: (req, next) => {
+            // do something here
             next();
         },
         onVerified: (req, next) => {
             // update db here
-            req.user.twoFaVerified = true;
+            req.user.tfa.verified = true;
             next();
         }
     })
@@ -84,7 +83,7 @@ This is an example in Vash. Please adapt it to your app.
 ## AJAX
 You can also use Ajax.
 
-If you request `/2fa` with Ajax it will send back in JSON: `{ qrImage: string; verifyUrl: string; }`
+If you request `/tfa` with Ajax it will send back in JSON: `{ qrImage: string; verifyUrl: string; }`
 
 Do a `POST` request to `verifyUrl` and GateKeeper will send back a `JSON` object with a redirect url to use: `{  redirect: string; }` if needed.
 

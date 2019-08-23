@@ -29,7 +29,7 @@ declare namespace SecretManager {
 
     interface ExpressOpts {
         /**
-         * @default "/2fa"
+         * @default "/tfa"
          */
         routePathPrefix?: string;
 
@@ -47,9 +47,8 @@ declare namespace SecretManager {
          */
         userIdPath?: string;
 
-        onSecret: (req: express.Request, secret: any, next: NextFn) => void;
-
-        onVerified: (req: express.Request, next: NextFn) => void;
+        onSecret?: (req: express.Request, next: NextFn) => void;
+        onVerified?: (req: express.Request, next: NextFn) => void;
     }
 
     type NextFn = (err?: Error) => void;
