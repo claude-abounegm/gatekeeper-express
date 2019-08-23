@@ -47,8 +47,7 @@ declare namespace SecretManager {
          */
         userIdPath?: string;
 
-        onSecret?: (req: express.Request, next: NextFn) => void;
-        onVerified?: (req: express.Request, next: NextFn) => void;
+        onUpdate?: (req: express.Request, tfa: any, next: NextFn) => void;
     }
 
     type NextFn = (err?: Error) => void;

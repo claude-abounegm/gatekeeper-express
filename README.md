@@ -35,13 +35,9 @@ app.use(
     gateKeeper.express({
         routePathPrefix: '/tfa',
         userIdPath: 'email',
-        onSecret: (req, next) => {
-            // do something here
-            next();
-        },
-        onVerified: (req, next) => {
-            // update db here
-            req.user.tfa.verified = true;
+        onUpdate: async (req, tfa, next) => {
+            user.tfa = tfa;
+            await user.save();
             next();
         }
     })
