@@ -6,7 +6,7 @@ declare class Secret {
 
     static generate(opts?: Secret.GenerateOpts): Secret;
 
-    readonly prefix: string;
+    readonly appName: string;
     readonly secret: string;
 }
 
@@ -15,16 +15,16 @@ declare namespace Secret {
         /**
          * The name of the application name that will
          * be displayed in the authenticator.
-         * 
-         * Format: ${prefix}:${userId}
+         *
+         * Format: ${appName}:${userId}
          */
-        prefix?: string;
+        appName?: string;
 
         secret: string;
     }
 
     interface GenerateOpts {
-        prefix?: string;
+        appName?: string;
         length?: number;
     }
 }

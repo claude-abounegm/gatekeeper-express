@@ -7,7 +7,7 @@ declare class SecretManager {
     generate(): Secret;
     express(opts: SecretManager.ExpressOpts): express.Router;
 
-    readonly prefix: string;
+    readonly appName: string;
     readonly length: number;
 }
 
@@ -17,9 +17,9 @@ declare namespace SecretManager {
          * The name of the application name that will
          * be displayed in the authenticator.
          *
-         * Format: ${prefix}:${userId}
+         * Format: ${appName}:${userId}
          */
-        prefix?: string;
+        appName?: string;
 
         /**
          * @default 64
@@ -47,10 +47,14 @@ declare namespace SecretManager {
          */
         userIdPath?: string;
 
-        onUpdate?: (req: express.Request, tfa: any, next: NextFn) => void;
+        onSerialize: (req: express.Request, tfa: Tfa) => Promise<void>;
+        onDeserialize: (req: express.Request) => Promise<void>;
     }
 
-    type NextFn = (err?: Error) => void;
+    interface Tfa {
+        verfied: boolean;
+        secret: string;
+    }
 }
 
 declare global {

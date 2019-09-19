@@ -2,7 +2,7 @@
 
 The one and only Two Factor Authentication Handler for Express.
 
-Tested with `Authy` and `Google Authenticator`
+Tested with `Authy`, `Google Authenticator` and `Duo`.
 
 ![You shall not pass](https://www.meme-arsenal.com/memes/4327bd2e8c9ad98e5703afa1ba3333c0.jpg)
 
@@ -27,7 +27,7 @@ Tested with `Authy` and `Google Authenticator`
 const { GateKeeper } = require('gatekeeper-express');
 
 const gateKeeper = new GateKeeper({
-    prefix: 'App',
+    appName: 'App',
     length: 64
 });
 
@@ -35,10 +35,12 @@ app.use(
     gateKeeper.express({
         routePathPrefix: '/tfa',
         userIdPath: 'email',
-        onUpdate: async (req, tfa, next) => {
-            user.tfa = tfa;
-            await user.save();
-            next();
+        onSerialize: async (req, tfa) => {
+            req.user.tfa = tfa;
+            await req.user.save();
+        },
+        onDeserialize: async req => {
+            return req.user.tfa;
         }
     })
 );
@@ -85,7 +87,7 @@ Do a `POST` request to `verifyUrl` and GateKeeper will send back a `JSON` object
 
 ***
 # Reset
-To reset a user's 2-fa, simply delete `user.secret`.
+To reset a user's 2-fa, simply delete `user.tfa`.
 ***
 
 Made with ❤ at [Income Store](http://incomestore.com) in _Lancaster, PA_.
